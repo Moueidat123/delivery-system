@@ -1,6 +1,10 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
+// Always compute fresh numbers — never cache this route.
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 // GET /api/stats -> summary numbers for the dashboard
 export async function GET() {
   const [total, pending, delivered, cancelled, agg, deliveredAgg] = await Promise.all([

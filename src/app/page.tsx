@@ -34,18 +34,18 @@ export default function HomePage() {
     if (filter !== "ALL") params.set("status", filter);
     if (driverFilter) params.set("driverId", driverFilter);
     if (query.trim()) params.set("q", query.trim());
-    const res = await fetch(`/api/deliveries?${params.toString()}`);
+    const res = await fetch(`/api/deliveries?${params.toString()}`, { cache: "no-store" });
     const data = await res.json();
     setDeliveries(data);
   }, [filter, driverFilter, query]);
 
   const loadDrivers = useCallback(async () => {
-    const res = await fetch("/api/drivers");
+    const res = await fetch("/api/drivers", { cache: "no-store" });
     setDrivers(await res.json());
   }, []);
 
   const loadStats = useCallback(async () => {
-    const res = await fetch("/api/stats");
+    const res = await fetch("/api/stats", { cache: "no-store" });
     setStats(await res.json());
   }, []);
 

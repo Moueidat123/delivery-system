@@ -3,6 +3,10 @@ import { prisma } from "@/lib/prisma";
 import { generateSerial } from "@/lib/utils";
 import { Prisma } from "@prisma/client";
 
+// Always return fresh data — never cache this route.
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 // GET /api/deliveries?status=&driverId=&q=
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
