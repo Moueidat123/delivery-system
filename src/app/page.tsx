@@ -358,6 +358,12 @@ export default function HomePage() {
                     >
                       ✎ Edit
                     </button>
+                    <button
+                      onClick={() => remove(d.id)}
+                      className="btn-secondary flex-1 text-rose-600 hover:bg-rose-50"
+                    >
+                      🗑 Delete
+                    </button>
                   </div>
                 </div>
               ))}
