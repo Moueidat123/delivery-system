@@ -80,7 +80,7 @@ export default function DriversManager({
                   className="input"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  placeholder="e.g. Omar Haddad"
+                  placeholder="Enter driver name"
                 />
               </div>
               <div>
@@ -89,7 +89,7 @@ export default function DriversManager({
                   className="input"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
-                  placeholder="e.g. +961 70 111 222"
+                  placeholder="Enter phone number"
                 />
               </div>
             </div>

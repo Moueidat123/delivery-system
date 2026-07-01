@@ -44,12 +44,13 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
 
     const productName = String(body.productName || "").trim();
-    const buyerName = String(body.buyerName || "").trim();
-    const buyerPhone = String(body.buyerPhone || "").trim();
+    // Buyer name & phone are optional — default to "Unknown" / "N/A".
+    const buyerName = String(body.buyerName || "").trim() || "Unknown";
+    const buyerPhone = String(body.buyerPhone || "").trim() || "N/A";
 
-    if (!productName || !buyerName || !buyerPhone) {
+    if (!productName) {
       return NextResponse.json(
-        { error: "productName, buyerName and buyerPhone are required." },
+        { error: "Product name is required." },
         { status: 400 }
       );
     }

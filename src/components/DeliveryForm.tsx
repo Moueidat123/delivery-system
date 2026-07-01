@@ -180,23 +180,21 @@ export default function DeliveryForm({
             <legend className="text-sm font-semibold text-slate-500">Buyer</legend>
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <div>
-                <label className="label">Buyer Name *</label>
+                <label className="label">Buyer Name</label>
                 <input
                   className="input"
-                  required
                   value={form.buyerName}
                   onChange={(e) => update("buyerName", e.target.value)}
-                  placeholder="e.g. Karim Nassar"
+                  placeholder="Leave empty for Unknown"
                 />
               </div>
               <div>
-                <label className="label">Phone Number *</label>
+                <label className="label">Phone Number</label>
                 <input
                   className="input"
-                  required
                   value={form.buyerPhone}
                   onChange={(e) => update("buyerPhone", e.target.value)}
-                  placeholder="e.g. +961 76 555 010"
+                  placeholder="Leave empty for N/A"
                 />
               </div>
               <div>
