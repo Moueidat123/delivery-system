@@ -1,0 +1,52 @@
+// Prisma schema for the Delivery Management System
+// Docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// A delivery driver / team member
+model Driver {
+  id         String     @id @default(cuid())
+  name       String
+  phone      String?
+  active     Boolean    @default(true)
+  createdAt  DateTime   @default(now())
+  deliveries Delivery[]
+}
+
+// A single product delivery order
+model Delivery {
+  id            String    @id @default(cuid())
+  serialNumber  String    @unique
+  productName   String
+  buyerName     String
+  buyerPhone    String
+  address       String?
+  city          String?
+  notes         String?
+
+  price         Float     @default(0)
+  deliveryPrice Float     @default(0)
+  totalPrice    Float     @default(0)
+  driverGain    Float     @default(0)
+
+  // Status: PENDING | DELIVERED | CANCELLED
+  // Stored as text because SQLite does not support Prisma enums.
+  status        String    @default("PENDING")
+
+  driver        Driver?   @relation(fields: [driverId], references: [id], onDelete: SetNull)
+  driverId      String?
+
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  deliveredAt   DateTime?
+
+  @@index([status])
+  @@index([driverId])
+}
